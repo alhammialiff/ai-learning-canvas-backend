@@ -2,7 +2,8 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 
-from service.datasetAnalyzer import readDataset
+from service.datasetReader import readDataset
+from service.modelBuilder import buildModel
 
 app = Flask(__name__)
 CORS(app)
@@ -45,16 +46,22 @@ def readDatasetRoute():
     # Read, parse and retrieve dataset
     responseData = readDataset(selectedDataset)
 
+    buildModel(responseData)
+
     # Append dataset into response dictionary
     response = {
         "message": 200,
-        "data": responseData.to_dict(orient="records"),
+        "data": responseData.head().to_dict(orient="records"),
         "timestamp": ""
     }
 
     # Return JSON Serialized dictionary
     return jsonify(response)
 
+@app.route('/', methods=['GET'])
+def home():
+    
+    return "Flask backend is running!"
     
 
 

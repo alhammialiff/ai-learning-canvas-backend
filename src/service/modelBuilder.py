@@ -1,5 +1,6 @@
-from service.datasetCleaner import cleanDataset, defineFeatureTarget, createTensorDataSet, trainModel
-
+from service.datasetCleaner import cleanDataset
+from service.featureTargetSplitter import defineFeatureTarget
+from service.deepLearningTrainer import createTensorDataSet, trainModel
 
 def buildModel(dataset):
 

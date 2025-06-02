@@ -10,7 +10,7 @@ CORS(app)
 
 # ========================================
 # API Test Signal - Sole to test receipt of data
-#                   from Angular
+#                   from Angular and React
 # ========================================
 @app.route('/api/test', methods=['POST'])
 def apiTestRoute():
@@ -36,6 +36,7 @@ def apiTestRoute():
 
     return jsonify(response)
 
+
 @app.route('/api/dataset', methods=['POST'])
 def readDatasetRoute():
 
@@ -58,9 +59,10 @@ def readDatasetRoute():
     # Return JSON Serialized dictionary
     return jsonify(response)
 
+
 @app.route('/', methods=['GET'])
 def home():
-    
+
     return "Flask backend is running!"
     
 
